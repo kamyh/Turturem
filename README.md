@@ -5,7 +5,7 @@ Le Turturem est un langage basé sur le latin servant à généré des scripts p
 
 Mot Clef
 ========
-goto	ire
+goto	ire\n
 for	quia
 step	gradus
 end	finis
