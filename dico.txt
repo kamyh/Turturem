@@ -1,0 +1,46 @@
+goto 		--> ire
+for			--> quia
+step		--> gradus
+end			--> finis
+end line  	--> <
+start		--> initium
+rotation	--> circumactio
+
+square 		--> quadratum
+triangle	--> triangulum
+circle		--> circulus
+
+black		--> nigrum
+red			--> rufus
+blue		--> caeruleum
+green		--> viridis
+
+quel gradus --> :
+
+
+carre de taille 10 bleu --> quadratum.10.caeruleum
+
+circumactio.90
+
+Exemples:
+	- 	quadratum.10.caeruleum<
+	
+	- 	circulus.10.caeruleum<
+	
+	- 	triangulum.10.caeruleum<
+	
+	- 	quia.10.1.0<
+		quadratum.gradus:0.caeruleum<
+		finis<
+		
+	- 	quadratum.10.caeruleum<
+		ire.12.3<
+		quadratum.10.caeruleum<
+		
+	-	quia.10.1.0<
+		quia.10.1.0<
+		quadratum.gradus:0.caeruleum<
+		finis<
+		quadratum.gradus:1.caeruleum<
+		finis<
+	
