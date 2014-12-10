@@ -1,4 +1,9 @@
 import ply.lex as lex
+motif = (
+    'quadratum',
+    'triangulum',
+    'circulus'
+)
 
 reserved_words = (
 	'ire',
@@ -7,23 +12,17 @@ reserved_words = (
     'finis',
     'initium',
     'circumactio',
-    'circumactio',
     'nigrum',
     'rufus',
     'caeruleum',
-    'viridis'
-)
+    'viridis',
+)+ tuple(motif)
 
-motif = (
-    'quadratum',
-    'triangulum',
-    'circulus'
-)
+
 
 tokens = (
-             'NUMBER'
+    'NUMBER',
 ) + tuple(map(lambda s:s.upper(),reserved_words))
-+ tuple(map(lambda s:s.upper(),motif))
 
 literals = '.<'
 
@@ -36,11 +35,13 @@ def t_NUMBER(t):
 		t.value = 0
 	return t
 
+"""
 def t_MOTIF(t):
     r'[A-Za-z_]\w*'
     if t.value in motif:
         t.type = t.value.upper()
     return t
+"""
 
 def t_IDENTIFIER(t):
 	r'[A-Za-z_]\w*'
