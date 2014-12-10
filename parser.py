@@ -9,11 +9,9 @@ def p_programme_statement(p):
     ''' programme : statement '''
     p[0] = AST.ProgramNode(p[1])
 
-
 def p_programme_recursive(p):
     ''' programme : statement '<' programme '''
     p[0] = AST.ProgramNode([p[1]]+p[3].children)
-
 
 def p_statement(p):
     ''' statement : assignation
@@ -27,7 +25,7 @@ def p_statement_print(p):
 """
 
 def p_structure(p):
-    ''' structure : QUIA'.'NUMBER'.'NUMBER'.'MOTIF programme finis '''
+    ''' structure : QUIA'.'NUMBER'.'NUMBER'.'NUMBER programme finis '''
     p[0] = AST.WhileNode([p[2],p[4]])
 
 """
