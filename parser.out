@@ -1,0 +1,143 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    GRADUS
+    CIRCUMACTIO
+    FINIS
+    VIRIDIS
+    CAERULEUM
+    QUIA
+    INITIUM
+    NIGRUM
+    IRE
+    RUFUS
+
+Grammar
+
+Rule 0     S' -> programme
+Rule 1     programme -> statement
+Rule 2     programme -> statement < programme
+Rule 3     statement -> expression
+Rule 4     expression -> MOTIF . NUMBER . COLOR
+
+Terminals, with rules where they appear
+
+.                    : 4 4
+<                    : 2
+CAERULEUM            : 
+CIRCUMACTIO          : 
+COLOR                : 4
+FINIS                : 
+GRADUS               : 
+INITIUM              : 
+IRE                  : 
+MOTIF                : 4
+NIGRUM               : 
+NUMBER               : 4
+QUIA                 : 
+RUFUS                : 
+VIRIDIS              : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 3
+programme            : 2 0
+statement            : 1 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programme
+    (1) programme -> . statement
+    (2) programme -> . statement < programme
+    (3) statement -> . expression
+    (4) expression -> . MOTIF . NUMBER . COLOR
+
+    MOTIF           shift and go to state 1
+
+    expression                     shift and go to state 3
+    statement                      shift and go to state 2
+    programme                      shift and go to state 4
+
+state 1
+
+    (4) expression -> MOTIF . . NUMBER . COLOR
+
+    .               shift and go to state 5
+
+
+state 2
+
+    (1) programme -> statement .
+    (2) programme -> statement . < programme
+
+    $end            reduce using rule 1 (programme -> statement .)
+    <               shift and go to state 6
+
+
+state 3
+
+    (3) statement -> expression .
+
+    <               reduce using rule 3 (statement -> expression .)
+    $end            reduce using rule 3 (statement -> expression .)
+
+
+state 4
+
+    (0) S' -> programme .
+
+
+
+state 5
+
+    (4) expression -> MOTIF . . NUMBER . COLOR
+
+    NUMBER          shift and go to state 7
+
+
+state 6
+
+    (2) programme -> statement < . programme
+    (1) programme -> . statement
+    (2) programme -> . statement < programme
+    (3) statement -> . expression
+    (4) expression -> . MOTIF . NUMBER . COLOR
+
+    MOTIF           shift and go to state 1
+
+    expression                     shift and go to state 3
+    statement                      shift and go to state 2
+    programme                      shift and go to state 8
+
+state 7
+
+    (4) expression -> MOTIF . NUMBER . . COLOR
+
+    .               shift and go to state 9
+
+
+state 8
+
+    (2) programme -> statement < programme .
+
+    $end            reduce using rule 2 (programme -> statement < programme .)
+
+
+state 9
+
+    (4) expression -> MOTIF . NUMBER . . COLOR
+
+    COLOR           shift and go to state 10
+
+
+state 10
+
+    (4) expression -> MOTIF . NUMBER . COLOR .
+
+    <               reduce using rule 4 (expression -> MOTIF . NUMBER . COLOR .)
+    $end            reduce using rule 4 (expression -> MOTIF . NUMBER . COLOR .)
+

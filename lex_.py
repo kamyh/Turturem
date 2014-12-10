@@ -1,9 +1,20 @@
 import ply.lex as lex
+
 motif = (
     'quadratum',
     'triangulum',
     'circulus'
 )
+
+color = (
+    'caeruleum',
+    'rufus',
+    'viridis',
+    'nigrum'
+)
+
+
+
 
 reserved_words = (
 	'ire',
@@ -15,16 +26,17 @@ reserved_words = (
     'nigrum',
     'rufus',
     'caeruleum',
-    'viridis',
-)+ tuple(motif)
-
+    'viridis'
+)
 
 
 tokens = (
     'NUMBER',
-) + tuple(map(lambda s:s.upper(),reserved_words))
+    'MOTIF',
+    'COLOR'
+) + tuple(map(lambda s:s.upper(),reserved_words)) #+ tuple(map(lambda s:s.upper(),motif))
 
-literals = '.<'
+literals = ':.<'
 
 def t_NUMBER(t):
 	r'\d+(\.\d+)?'
@@ -35,20 +47,27 @@ def t_NUMBER(t):
 		t.value = 0
 	return t
 
-"""
-def t_MOTIF(t):
+
+
+def t_EXPRESSION(t):
     r'[A-Za-z_]\w*'
-    if t.value in motif:
+    if t.value in color:
+        t.type = "COLOR"#t.value.upper()
+    elif t.value in motif:
+        t.type = "MOTIF"
+    else:
         t.type = t.value.upper()
     return t
-"""
 
+
+
+"""
 def t_IDENTIFIER(t):
 	r'[A-Za-z_]\w*'
 	if t.value in reserved_words:
 		t.type = t.value.upper()
 	return t
-	
+"""
 def t_newline(t):
 	r'\n+'
 	t.lexer.lineno += len(t.value)

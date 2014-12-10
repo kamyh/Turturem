@@ -14,20 +14,22 @@ def p_programme_recursive(p):
     p[0] = AST.ProgramNode([p[1]]+p[3].children)
 
 def p_statement(p):
-    ''' statement : assignation
-        | structure '''
+    ''' statement : expression '''
     p[0] = p[1]
 
+def p_expression_motif(p):
+    ''' expression : MOTIF '.' NUMBER '.' COLOR '''
+    p[0] = AST.OpNode(p[2],[p[1],p[3],p[5]])
 """
 def p_statement_print(p):
     ''' statement : PRINT expression '''
     p[0] = AST.PrintNode(p[2])
 """
-
+"""
 def p_structure(p):
-    ''' structure : QUIA'.'NUMBER'.'NUMBER'.'NUMBER programme finis '''
-    p[0] = AST.WhileNode([p[2],p[4]])
-
+    ''' structure : QUIA '.' NUMBER '.' NUMBER '.' NUMBER programme FINIS '''
+    p[0] = 0#AST.forNode([p[2],p[4]])
+"""
 """
 def p_expression_op(p):
     '''expression : expression ADD_OP expression
@@ -58,7 +60,7 @@ def p_error(p):
         print ("Syntax error in line %d" % p.lineno)
         yacc.errok()
     else:
-        print ("Sytax error: unexpected end of file!")
+        print ("Syntax error: unexpected end of file!")
 
 """
 precedence = (
@@ -84,7 +86,7 @@ if __name__ == "__main__":
         import os
         graph = result.makegraphicaltree()
         name = os.path.splitext(sys.argv[1])[0]+'-ast.pdf'
-        graph.write_pdf(name) 
+        graph.write_pdf(name)
         print ("wrote ast to", name)
     else:
         print ("Parsing returned no result!")
