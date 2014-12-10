@@ -7,19 +7,40 @@ reserved_words = (
     'finis',
     'initium',
     'circumactio',
-    'quadratum',
-    'triangulum',
-    'circulus',
+    'circumactio',
     'nigrum',
     'rufus',
     'caeruleum',
     'viridis'
 )
 
+motif = (
+    'quadratum',
+    'triangulum',
+    'circulus'
+)
 
-tokens = tuple(map(lambda s:s.upper(),reserved_words))
+tokens = (
+             'NUMBER'
+) + tuple(map(lambda s:s.upper(),reserved_words))
++ tuple(map(lambda s:s.upper(),motif))
 
 literals = '.<'
+
+def t_NUMBER(t):
+	r'\d+(\.\d+)?'
+	try:
+		t.value = float(t.value)
+	except ValueError:
+		print ("Line %d: Problem while parsing %s!" % (t.lineno,t.value))
+		t.value = 0
+	return t
+
+def t_MOTIF(t):
+    r'[A-Za-z_]\w*'
+    if t.value in motif:
+        t.type = t.value.upper()
+    return t
 
 def t_IDENTIFIER(t):
 	r'[A-Za-z_]\w*'
