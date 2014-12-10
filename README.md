@@ -34,7 +34,8 @@ green	viridis
 
 Utilisation
 ========
-gradus :{Integer} , représente la variable d’avancement de la boucle for, lors de cette boucle {Integer} prendra la valeur de la profondeur de l’imbrication. 
+gradus :
+{Integer} , représente la variable d’avancement de la boucle for, lors de cette boucle {Integer} prendra la valeur de la profondeur de l’imbrication. 
 quia.{valeur de départ}.{pas}.{valeur de fin}
 ire.{x}.{y}
 Les motifs de bases s’utilisent de la manière suivante :
