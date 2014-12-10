@@ -21,7 +21,7 @@ motif = (
 )
 
 tokens = (
-             'NUMBER'
+        'NUMBER'
 ) + tuple(map(lambda s:s.upper(),reserved_words))
 + tuple(map(lambda s:s.upper(),motif))
 
