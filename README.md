@@ -5,19 +5,32 @@ Le Turturem est un langage basé sur le latin servant à généré des scripts p
 
 Mot Clef
 ========
-goto	ire\n
+goto	ire
+
 for	quia
+
 step	gradus
+
 end	finis
+
 end line	<
+
 start	initium
+
 square	quadratum
+
 trangle	triangulum
+
 circle	circulus
+
 black	nigrum
+
 red	rufus
+
 blue	caeruleum
+
 green	viridis
+
 
 Utilisation
 ========
