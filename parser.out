@@ -17,24 +17,22 @@ Grammar
 
 Rule 0     S' -> programme
 Rule 1     programme -> statement
-Rule 2     programme -> statement < programme
-Rule 3     statement -> expression
-Rule 4     expression -> MOTIF . NUMBER . COLOR
+Rule 2     statement -> expression
+Rule 3     expression -> MOTIF . NUMBER . COLOR
 
 Terminals, with rules where they appear
 
-.                    : 4 4
-<                    : 2
+.                    : 3 3
 CAERULEUM            : 
 CIRCUMACTIO          : 
-COLOR                : 4
+COLOR                : 3
 FINIS                : 
 GRADUS               : 
 INITIUM              : 
 IRE                  : 
-MOTIF                : 4
+MOTIF                : 3
 NIGRUM               : 
-NUMBER               : 4
+NUMBER               : 3
 QUIA                 : 
 RUFUS                : 
 VIRIDIS              : 
@@ -42,9 +40,9 @@ error                :
 
 Nonterminals, with rules where they appear
 
-expression           : 3
-programme            : 2 0
-statement            : 1 2
+expression           : 2
+programme            : 0
+statement            : 1
 
 Parsing method: LALR
 
@@ -52,9 +50,8 @@ state 0
 
     (0) S' -> . programme
     (1) programme -> . statement
-    (2) programme -> . statement < programme
-    (3) statement -> . expression
-    (4) expression -> . MOTIF . NUMBER . COLOR
+    (2) statement -> . expression
+    (3) expression -> . MOTIF . NUMBER . COLOR
 
     MOTIF           shift and go to state 1
 
@@ -64,7 +61,7 @@ state 0
 
 state 1
 
-    (4) expression -> MOTIF . . NUMBER . COLOR
+    (3) expression -> MOTIF . . NUMBER . COLOR
 
     .               shift and go to state 5
 
@@ -72,18 +69,15 @@ state 1
 state 2
 
     (1) programme -> statement .
-    (2) programme -> statement . < programme
 
     $end            reduce using rule 1 (programme -> statement .)
-    <               shift and go to state 6
 
 
 state 3
 
-    (3) statement -> expression .
+    (2) statement -> expression .
 
-    <               reduce using rule 3 (statement -> expression .)
-    $end            reduce using rule 3 (statement -> expression .)
+    $end            reduce using rule 2 (statement -> expression .)
 
 
 state 4
@@ -94,50 +88,28 @@ state 4
 
 state 5
 
-    (4) expression -> MOTIF . . NUMBER . COLOR
+    (3) expression -> MOTIF . . NUMBER . COLOR
 
-    NUMBER          shift and go to state 7
+    NUMBER          shift and go to state 6
 
 
 state 6
 
-    (2) programme -> statement < . programme
-    (1) programme -> . statement
-    (2) programme -> . statement < programme
-    (3) statement -> . expression
-    (4) expression -> . MOTIF . NUMBER . COLOR
+    (3) expression -> MOTIF . NUMBER . . COLOR
 
-    MOTIF           shift and go to state 1
+    .               shift and go to state 7
 
-    expression                     shift and go to state 3
-    statement                      shift and go to state 2
-    programme                      shift and go to state 8
 
 state 7
 
-    (4) expression -> MOTIF . NUMBER . . COLOR
+    (3) expression -> MOTIF . NUMBER . . COLOR
 
-    .               shift and go to state 9
+    COLOR           shift and go to state 8
 
 
 state 8
 
-    (2) programme -> statement < programme .
+    (3) expression -> MOTIF . NUMBER . COLOR .
 
-    $end            reduce using rule 2 (programme -> statement < programme .)
-
-
-state 9
-
-    (4) expression -> MOTIF . NUMBER . . COLOR
-
-    COLOR           shift and go to state 10
-
-
-state 10
-
-    (4) expression -> MOTIF . NUMBER . COLOR .
-
-    <               reduce using rule 4 (expression -> MOTIF . NUMBER . COLOR .)
-    $end            reduce using rule 4 (expression -> MOTIF . NUMBER . COLOR .)
+    $end            reduce using rule 3 (expression -> MOTIF . NUMBER . COLOR .)
 

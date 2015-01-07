@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\xce\x86\xa1-t\xa9\x17\x97E\xd5\xf1s\x1d\xf5=\xae'
+_lr_signature = '2\xd8]\x959\x8d\x17\x1e?\t\xdd>K\xbdq\x02'
     
-_lr_action_items = {'MOTIF':([0,6,],[1,1,]),'COLOR':([9,],[10,]),'NUMBER':([5,],[7,]),'.':([1,7,],[5,9,]),'<':([2,3,10,],[6,-3,-4,]),'$end':([2,3,4,8,10,],[-1,-3,0,-2,-4,]),}
+_lr_action_items = {'COLOR':([7,],[8,]),'$end':([2,3,4,8,],[-1,-2,0,-3,]),'MOTIF':([0,],[1,]),'NUMBER':([5,],[6,]),'.':([1,6,],[5,7,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,6,],[3,3,]),'statement':([0,6,],[2,2,]),'programme':([0,6,],[4,8,]),}
+_lr_goto_items = {'expression':([0,],[3,]),'statement':([0,],[2,]),'programme':([0,],[4,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -26,8 +26,7 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> programme","S'",1,None,None,None),
-  ('programme -> statement','programme',1,'p_programme_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',9),
-  ('programme -> statement < programme','programme',3,'p_programme_recursive','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',13),
-  ('statement -> expression','statement',1,'p_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',17),
-  ('expression -> MOTIF . NUMBER . COLOR','expression',5,'p_expression_motif','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',21),
+  ('programme -> statement','programme',1,'p_programme_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',7),
+  ('statement -> expression','statement',1,'p_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',15),
+  ('expression -> MOTIF . NUMBER . COLOR','expression',5,'p_expression_motif','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',19),
 ]

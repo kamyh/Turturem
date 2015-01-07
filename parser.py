@@ -3,23 +3,21 @@ import ply.yacc as yacc
 from lex_ import tokens
 import AST
 
-vars = {}
-
 def p_programme_statement(p):
     ''' programme : statement '''
     p[0] = AST.ProgramNode(p[1])
-
+"""
 def p_programme_recursive(p):
     ''' programme : statement '<' programme '''
     p[0] = AST.ProgramNode([p[1]]+p[3].children)
-
+"""
 def p_statement(p):
     ''' statement : expression '''
     p[0] = p[1]
 
 def p_expression_motif(p):
     ''' expression : MOTIF '.' NUMBER '.' COLOR '''
-    p[0] = AST.OpNode(p[2],[p[1],p[3],p[5]])
+    p[0] = AST.OpNode(p[2],[p[1],p[3]])
 """
 def p_statement_print(p):
     ''' statement : PRINT expression '''
@@ -69,10 +67,10 @@ precedence = (
     ('right', 'UMINUS'),  
 )
 """
-
+"""
 def parse(program):
     return yacc.parse(program)
-
+"""
 yacc.yacc(outputdir='generated')
 
 if __name__ == "__main__":
@@ -80,6 +78,7 @@ if __name__ == "__main__":
     	
     prog = open(sys.argv[1]).read()
     result = yacc.parse(prog)
+
     if result:
         print (result)
             
