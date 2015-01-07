@@ -2,7 +2,6 @@ Created by PLY version 3.4 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    CIRCUMACTIO
     VIRIDIS
     CAERULEUM
     INITIUM
@@ -17,40 +16,41 @@ Rule 2     programme -> statement < programme
 Rule 3     statement -> expression
 Rule 4     statement -> structure
 Rule 5     expression -> MOTIF . VALUE . COLOR
-Rule 6     expression -> deplacement
-Rule 7     deplacement -> IRE . NUMBER . NUMBER
-Rule 8     VALUE -> NUMBER
-Rule 9     VALUE -> GRADUS_
-Rule 10    GRADUS_ -> GRADUS : NUMBER
-Rule 11    structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
+Rule 6     expression -> CIRCUMACTIO . NUMBER
+Rule 7     expression -> deplacement
+Rule 8     deplacement -> IRE . NUMBER . NUMBER
+Rule 9     VALUE -> NUMBER
+Rule 10    VALUE -> GRADUS_
+Rule 11    GRADUS_ -> GRADUS : NUMBER
+Rule 12    structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
 
 Terminals, with rules where they appear
 
-.                    : 5 5 7 7 11 11 11
-:                    : 10
-<                    : 2 11
+.                    : 5 5 6 8 8 12 12 12
+:                    : 11
+<                    : 2 12
 CAERULEUM            : 
-CIRCUMACTIO          : 
+CIRCUMACTIO          : 6
 COLOR                : 5
-FINIS                : 11
-GRADUS               : 10
+FINIS                : 12
+GRADUS               : 11
 INITIUM              : 
-IRE                  : 7
+IRE                  : 8
 MOTIF                : 5
 NIGRUM               : 
-NUMBER               : 7 7 8 10 11 11 11
-QUIA                 : 11
+NUMBER               : 6 8 8 9 11 12 12 12
+QUIA                 : 12
 RUFUS                : 
 VIRIDIS              : 
 error                : 
 
 Nonterminals, with rules where they appear
 
-GRADUS_              : 9
+GRADUS_              : 10
 VALUE                : 5
-deplacement          : 6
+deplacement          : 7
 expression           : 3
-programme            : 2 11 0
+programme            : 2 12 0
 statement            : 1 2
 structure            : 4
 
@@ -64,61 +64,70 @@ state 0
     (3) statement -> . expression
     (4) statement -> . structure
     (5) expression -> . MOTIF . VALUE . COLOR
-    (6) expression -> . deplacement
-    (11) structure -> . QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
-    (7) deplacement -> . IRE . NUMBER . NUMBER
+    (6) expression -> . CIRCUMACTIO . NUMBER
+    (7) expression -> . deplacement
+    (12) structure -> . QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
+    (8) deplacement -> . IRE . NUMBER . NUMBER
 
     MOTIF           shift and go to state 1
-    QUIA            shift and go to state 3
-    IRE             shift and go to state 5
+    CIRCUMACTIO     shift and go to state 2
+    QUIA            shift and go to state 4
+    IRE             shift and go to state 6
 
-    statement                      shift and go to state 4
-    expression                     shift and go to state 6
-    deplacement                    shift and go to state 2
-    structure                      shift and go to state 7
-    programme                      shift and go to state 8
+    statement                      shift and go to state 5
+    expression                     shift and go to state 7
+    deplacement                    shift and go to state 3
+    structure                      shift and go to state 8
+    programme                      shift and go to state 9
 
 state 1
 
     (5) expression -> MOTIF . . VALUE . COLOR
 
-    .               shift and go to state 9
+    .               shift and go to state 10
 
 
 state 2
 
-    (6) expression -> deplacement .
+    (6) expression -> CIRCUMACTIO . . NUMBER
 
-    <               reduce using rule 6 (expression -> deplacement .)
-    $end            reduce using rule 6 (expression -> deplacement .)
-    FINIS           reduce using rule 6 (expression -> deplacement .)
+    .               shift and go to state 11
 
 
 state 3
 
-    (11) structure -> QUIA . . NUMBER . NUMBER . NUMBER < programme FINIS
+    (7) expression -> deplacement .
 
-    .               shift and go to state 10
+    <               reduce using rule 7 (expression -> deplacement .)
+    FINIS           reduce using rule 7 (expression -> deplacement .)
+    $end            reduce using rule 7 (expression -> deplacement .)
 
 
 state 4
 
-    (1) programme -> statement .
-    (2) programme -> statement . < programme
-
-    $end            reduce using rule 1 (programme -> statement .)
-    FINIS           reduce using rule 1 (programme -> statement .)
-    <               shift and go to state 11
-
-
-state 5
-
-    (7) deplacement -> IRE . . NUMBER . NUMBER
+    (12) structure -> QUIA . . NUMBER . NUMBER . NUMBER < programme FINIS
 
     .               shift and go to state 12
 
 
+state 5
+
+    (1) programme -> statement .
+    (2) programme -> statement . < programme
+
+    FINIS           reduce using rule 1 (programme -> statement .)
+    $end            reduce using rule 1 (programme -> statement .)
+    <               shift and go to state 13
+
+
 state 6
+
+    (8) deplacement -> IRE . . NUMBER . NUMBER
+
+    .               shift and go to state 14
+
+
+state 7
 
     (3) statement -> expression .
 
@@ -127,7 +136,7 @@ state 6
     FINIS           reduce using rule 3 (statement -> expression .)
 
 
-state 7
+state 8
 
     (4) statement -> structure .
 
@@ -136,33 +145,40 @@ state 7
     FINIS           reduce using rule 4 (statement -> structure .)
 
 
-state 8
+state 9
 
     (0) S' -> programme .
 
 
 
-state 9
-
-    (5) expression -> MOTIF . . VALUE . COLOR
-    (8) VALUE -> . NUMBER
-    (9) VALUE -> . GRADUS_
-    (10) GRADUS_ -> . GRADUS : NUMBER
-
-    NUMBER          shift and go to state 14
-    GRADUS          shift and go to state 13
-
-    GRADUS_                        shift and go to state 16
-    VALUE                          shift and go to state 15
-
 state 10
 
-    (11) structure -> QUIA . . NUMBER . NUMBER . NUMBER < programme FINIS
+    (5) expression -> MOTIF . . VALUE . COLOR
+    (9) VALUE -> . NUMBER
+    (10) VALUE -> . GRADUS_
+    (11) GRADUS_ -> . GRADUS : NUMBER
 
-    NUMBER          shift and go to state 17
+    NUMBER          shift and go to state 16
+    GRADUS          shift and go to state 15
 
+    GRADUS_                        shift and go to state 18
+    VALUE                          shift and go to state 17
 
 state 11
+
+    (6) expression -> CIRCUMACTIO . . NUMBER
+
+    NUMBER          shift and go to state 19
+
+
+state 12
+
+    (12) structure -> QUIA . . NUMBER . NUMBER . NUMBER < programme FINIS
+
+    NUMBER          shift and go to state 20
+
+
+state 13
 
     (2) programme -> statement < . programme
     (1) programme -> . statement
@@ -170,185 +186,198 @@ state 11
     (3) statement -> . expression
     (4) statement -> . structure
     (5) expression -> . MOTIF . VALUE . COLOR
-    (6) expression -> . deplacement
-    (11) structure -> . QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
-    (7) deplacement -> . IRE . NUMBER . NUMBER
+    (6) expression -> . CIRCUMACTIO . NUMBER
+    (7) expression -> . deplacement
+    (12) structure -> . QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
+    (8) deplacement -> . IRE . NUMBER . NUMBER
 
     MOTIF           shift and go to state 1
-    QUIA            shift and go to state 3
-    IRE             shift and go to state 5
+    CIRCUMACTIO     shift and go to state 2
+    QUIA            shift and go to state 4
+    IRE             shift and go to state 6
 
-    statement                      shift and go to state 4
-    expression                     shift and go to state 6
-    deplacement                    shift and go to state 2
-    structure                      shift and go to state 7
-    programme                      shift and go to state 18
-
-state 12
-
-    (7) deplacement -> IRE . . NUMBER . NUMBER
-
-    NUMBER          shift and go to state 19
-
-
-state 13
-
-    (10) GRADUS_ -> GRADUS . : NUMBER
-
-    :               shift and go to state 20
-
+    statement                      shift and go to state 5
+    expression                     shift and go to state 7
+    deplacement                    shift and go to state 3
+    structure                      shift and go to state 8
+    programme                      shift and go to state 21
 
 state 14
 
-    (8) VALUE -> NUMBER .
+    (8) deplacement -> IRE . . NUMBER . NUMBER
 
-    .               reduce using rule 8 (VALUE -> NUMBER .)
+    NUMBER          shift and go to state 22
 
 
 state 15
 
-    (5) expression -> MOTIF . VALUE . . COLOR
+    (11) GRADUS_ -> GRADUS . : NUMBER
 
-    .               shift and go to state 21
+    :               shift and go to state 23
 
 
 state 16
 
-    (9) VALUE -> GRADUS_ .
+    (9) VALUE -> NUMBER .
 
-    .               reduce using rule 9 (VALUE -> GRADUS_ .)
+    .               reduce using rule 9 (VALUE -> NUMBER .)
 
 
 state 17
 
-    (11) structure -> QUIA . NUMBER . . NUMBER . NUMBER < programme FINIS
+    (5) expression -> MOTIF . VALUE . . COLOR
 
-    .               shift and go to state 22
+    .               shift and go to state 24
 
 
 state 18
 
-    (2) programme -> statement < programme .
+    (10) VALUE -> GRADUS_ .
 
-    $end            reduce using rule 2 (programme -> statement < programme .)
-    FINIS           reduce using rule 2 (programme -> statement < programme .)
+    .               reduce using rule 10 (VALUE -> GRADUS_ .)
 
 
 state 19
 
-    (7) deplacement -> IRE . NUMBER . . NUMBER
+    (6) expression -> CIRCUMACTIO . NUMBER .
 
-    .               shift and go to state 23
+    <               reduce using rule 6 (expression -> CIRCUMACTIO . NUMBER .)
+    FINIS           reduce using rule 6 (expression -> CIRCUMACTIO . NUMBER .)
+    $end            reduce using rule 6 (expression -> CIRCUMACTIO . NUMBER .)
 
 
 state 20
 
-    (10) GRADUS_ -> GRADUS : . NUMBER
+    (12) structure -> QUIA . NUMBER . . NUMBER . NUMBER < programme FINIS
 
-    NUMBER          shift and go to state 24
+    .               shift and go to state 25
 
 
 state 21
 
-    (5) expression -> MOTIF . VALUE . . COLOR
+    (2) programme -> statement < programme .
 
-    COLOR           shift and go to state 25
+    FINIS           reduce using rule 2 (programme -> statement < programme .)
+    $end            reduce using rule 2 (programme -> statement < programme .)
 
 
 state 22
 
-    (11) structure -> QUIA . NUMBER . . NUMBER . NUMBER < programme FINIS
+    (8) deplacement -> IRE . NUMBER . . NUMBER
 
-    NUMBER          shift and go to state 26
+    .               shift and go to state 26
 
 
 state 23
 
-    (7) deplacement -> IRE . NUMBER . . NUMBER
+    (11) GRADUS_ -> GRADUS : . NUMBER
 
     NUMBER          shift and go to state 27
 
 
 state 24
 
-    (10) GRADUS_ -> GRADUS : NUMBER .
+    (5) expression -> MOTIF . VALUE . . COLOR
 
-    .               reduce using rule 10 (GRADUS_ -> GRADUS : NUMBER .)
+    COLOR           shift and go to state 28
 
 
 state 25
 
-    (5) expression -> MOTIF . VALUE . COLOR .
-
-    <               reduce using rule 5 (expression -> MOTIF . VALUE . COLOR .)
-    $end            reduce using rule 5 (expression -> MOTIF . VALUE . COLOR .)
-    FINIS           reduce using rule 5 (expression -> MOTIF . VALUE . COLOR .)
-
-
-state 26
-
-    (11) structure -> QUIA . NUMBER . NUMBER . . NUMBER < programme FINIS
-
-    .               shift and go to state 28
-
-
-state 27
-
-    (7) deplacement -> IRE . NUMBER . NUMBER .
-
-    <               reduce using rule 7 (deplacement -> IRE . NUMBER . NUMBER .)
-    $end            reduce using rule 7 (deplacement -> IRE . NUMBER . NUMBER .)
-    FINIS           reduce using rule 7 (deplacement -> IRE . NUMBER . NUMBER .)
-
-
-state 28
-
-    (11) structure -> QUIA . NUMBER . NUMBER . . NUMBER < programme FINIS
+    (12) structure -> QUIA . NUMBER . . NUMBER . NUMBER < programme FINIS
 
     NUMBER          shift and go to state 29
 
 
+state 26
+
+    (8) deplacement -> IRE . NUMBER . . NUMBER
+
+    NUMBER          shift and go to state 30
+
+
+state 27
+
+    (11) GRADUS_ -> GRADUS : NUMBER .
+
+    .               reduce using rule 11 (GRADUS_ -> GRADUS : NUMBER .)
+
+
+state 28
+
+    (5) expression -> MOTIF . VALUE . COLOR .
+
+    <               reduce using rule 5 (expression -> MOTIF . VALUE . COLOR .)
+    FINIS           reduce using rule 5 (expression -> MOTIF . VALUE . COLOR .)
+    $end            reduce using rule 5 (expression -> MOTIF . VALUE . COLOR .)
+
+
 state 29
 
-    (11) structure -> QUIA . NUMBER . NUMBER . NUMBER . < programme FINIS
+    (12) structure -> QUIA . NUMBER . NUMBER . . NUMBER < programme FINIS
 
-    <               shift and go to state 30
+    .               shift and go to state 31
 
 
 state 30
 
-    (11) structure -> QUIA . NUMBER . NUMBER . NUMBER < . programme FINIS
+    (8) deplacement -> IRE . NUMBER . NUMBER .
+
+    <               reduce using rule 8 (deplacement -> IRE . NUMBER . NUMBER .)
+    $end            reduce using rule 8 (deplacement -> IRE . NUMBER . NUMBER .)
+    FINIS           reduce using rule 8 (deplacement -> IRE . NUMBER . NUMBER .)
+
+
+state 31
+
+    (12) structure -> QUIA . NUMBER . NUMBER . . NUMBER < programme FINIS
+
+    NUMBER          shift and go to state 32
+
+
+state 32
+
+    (12) structure -> QUIA . NUMBER . NUMBER . NUMBER . < programme FINIS
+
+    <               shift and go to state 33
+
+
+state 33
+
+    (12) structure -> QUIA . NUMBER . NUMBER . NUMBER < . programme FINIS
     (1) programme -> . statement
     (2) programme -> . statement < programme
     (3) statement -> . expression
     (4) statement -> . structure
     (5) expression -> . MOTIF . VALUE . COLOR
-    (6) expression -> . deplacement
-    (11) structure -> . QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
-    (7) deplacement -> . IRE . NUMBER . NUMBER
+    (6) expression -> . CIRCUMACTIO . NUMBER
+    (7) expression -> . deplacement
+    (12) structure -> . QUIA . NUMBER . NUMBER . NUMBER < programme FINIS
+    (8) deplacement -> . IRE . NUMBER . NUMBER
 
     MOTIF           shift and go to state 1
-    QUIA            shift and go to state 3
-    IRE             shift and go to state 5
+    CIRCUMACTIO     shift and go to state 2
+    QUIA            shift and go to state 4
+    IRE             shift and go to state 6
 
-    statement                      shift and go to state 4
-    expression                     shift and go to state 6
-    deplacement                    shift and go to state 2
-    structure                      shift and go to state 7
-    programme                      shift and go to state 31
+    statement                      shift and go to state 5
+    expression                     shift and go to state 7
+    deplacement                    shift and go to state 3
+    structure                      shift and go to state 8
+    programme                      shift and go to state 34
 
-state 31
+state 34
 
-    (11) structure -> QUIA . NUMBER . NUMBER . NUMBER < programme . FINIS
+    (12) structure -> QUIA . NUMBER . NUMBER . NUMBER < programme . FINIS
 
-    FINIS           shift and go to state 32
+    FINIS           shift and go to state 35
 
 
-state 32
+state 35
 
-    (11) structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .
+    (12) structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .
 
-    <               reduce using rule 11 (structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .)
-    $end            reduce using rule 11 (structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .)
-    FINIS           reduce using rule 11 (structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .)
+    <               reduce using rule 12 (structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .)
+    FINIS           reduce using rule 12 (structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .)
+    $end            reduce using rule 12 (structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS .)
 

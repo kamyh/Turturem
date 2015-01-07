@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\xc3?\x03jf5%\x14\x10+F\x8c\x8e\xb4\x86?'
+_lr_signature = '\x93\xce\xb0\xd1\xa3\xf6\x13\xb3\xd85\xddY.\xda\xdd\xf1'
     
-_lr_action_items = {'GRADUS':([9,],[13,]),':':([13,],[20,]),'MOTIF':([0,11,30,],[1,1,1,]),'COLOR':([21,],[25,]),'FINIS':([2,4,6,7,18,25,27,31,32,],[-6,-1,-3,-4,-2,-5,-7,32,-11,]),'NUMBER':([9,10,12,20,22,23,28,],[14,17,19,24,26,27,29,]),'IRE':([0,11,30,],[5,5,5,]),'QUIA':([0,11,30,],[3,3,3,]),'.':([1,3,5,14,15,16,17,19,24,26,],[9,10,12,-8,21,-9,22,23,-10,28,]),'<':([2,4,6,7,25,27,29,32,],[-6,11,-3,-4,-5,-7,30,-11,]),'$end':([2,4,6,7,8,18,25,27,32,],[-6,-1,-3,-4,0,-2,-5,-7,-11,]),}
+_lr_action_items = {'GRADUS':([10,],[15,]),'MOTIF':([0,13,33,],[1,1,1,]),'CIRCUMACTIO':([0,13,33,],[2,2,2,]),'<':([3,5,7,8,19,28,30,32,35,],[-7,13,-3,-4,-6,-5,-8,33,-12,]),'FINIS':([3,5,7,8,19,21,28,30,34,35,],[-7,-1,-3,-4,-6,-2,-5,-8,35,-12,]),'NUMBER':([10,11,12,14,23,25,26,31,],[16,19,20,22,27,29,30,32,]),'.':([1,2,4,6,16,17,18,20,22,27,29,],[10,11,12,14,-9,24,-10,25,26,-11,31,]),'COLOR':([24,],[28,]),'QUIA':([0,13,33,],[4,4,4,]),':':([15,],[23,]),'IRE':([0,13,33,],[6,6,6,]),'$end':([3,5,7,8,9,19,21,28,30,35,],[-7,-1,-3,-4,0,-6,-2,-5,-8,-12,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'VALUE':([9,],[15,]),'GRADUS_':([9,],[16,]),'statement':([0,11,30,],[4,4,4,]),'expression':([0,11,30,],[6,6,6,]),'deplacement':([0,11,30,],[2,2,2,]),'structure':([0,11,30,],[7,7,7,]),'programme':([0,11,30,],[8,18,31,]),}
+_lr_goto_items = {'VALUE':([10,],[17,]),'GRADUS_':([10,],[18,]),'statement':([0,13,33,],[5,5,5,]),'expression':([0,13,33,],[7,7,7,]),'deplacement':([0,13,33,],[3,3,3,]),'structure':([0,13,33,],[8,8,8,]),'programme':([0,13,33,],[9,21,34,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -30,11 +30,12 @@ _lr_productions = [
   ('programme -> statement < programme','programme',3,'p_programme_recursive','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',11),
   ('statement -> expression','statement',1,'p_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',15),
   ('statement -> structure','statement',1,'p_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',16),
-  ('expression -> MOTIF . VALUE . COLOR','expression',5,'p_expression_motif','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',20),
-  ('expression -> deplacement','expression',1,'p_expression_motif','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',21),
-  ('deplacement -> IRE . NUMBER . NUMBER','deplacement',5,'p_deplacement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',28),
-  ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',32),
-  ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',33),
-  ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',37),
-  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',41),
+  ('expression -> MOTIF . VALUE . COLOR','expression',5,'p_expression','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',20),
+  ('expression -> CIRCUMACTIO . NUMBER','expression',3,'p_expression','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',21),
+  ('expression -> deplacement','expression',1,'p_expression','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',22),
+  ('deplacement -> IRE . NUMBER . NUMBER','deplacement',5,'p_deplacement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',31),
+  ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',35),
+  ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',36),
+  ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',40),
+  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',44),
 ]

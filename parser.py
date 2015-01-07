@@ -16,11 +16,14 @@ def p_statement(p):
         | structure'''
     p[0] = p[1]
 
-def p_expression_motif(p):
+def p_expression(p):
     ''' expression : MOTIF '.' VALUE '.' COLOR
+        | CIRCUMACTIO '.' NUMBER
         | deplacement '''
     if(len(p)==2):
         p[0] = p[1]
+    elif(len(p)==4):
+        p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3])])
     else:
         p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3]),AST.TokenNode(p[5])])
 
