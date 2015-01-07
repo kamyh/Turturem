@@ -13,9 +13,6 @@ color = (
     'nigrum'
 )
 
-
-
-
 reserved_words = (
 	'ire',
 	'quia',
@@ -28,7 +25,6 @@ reserved_words = (
     'caeruleum',
     'viridis'
 )
-
 
 tokens = (
     'NUMBER',
