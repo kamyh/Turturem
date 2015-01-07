@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'B\t\x83,]\xf8u\x95\xf9Z+5\xf4\xe4Q\x03'
+_lr_signature = '\xc3?\x03jf5%\x14\x10+F\x8c\x8e\xb4\x86?'
     
-_lr_action_items = {'GRADUS':([7,],[10,]),'MOTIF':([0,9,24,],[1,1,1,]),'COLOR':([17,],[20,]),'FINIS':([3,4,5,15,20,25,26,],[-1,-3,-4,-2,-5,26,-9,]),'NUMBER':([7,8,16,18,22,],[11,14,19,21,23,]),'.':([1,2,11,12,13,14,19,21,],[7,8,-6,17,-7,18,-8,22,]),'QUIA':([0,9,24,],[2,2,2,]),':':([10,],[16,]),'<':([3,4,5,20,23,26,],[9,-3,-4,-5,24,-9,]),'$end':([3,4,5,6,15,20,26,],[-1,-3,-4,0,-2,-5,-9,]),}
+_lr_action_items = {'GRADUS':([9,],[13,]),':':([13,],[20,]),'MOTIF':([0,11,30,],[1,1,1,]),'COLOR':([21,],[25,]),'FINIS':([2,4,6,7,18,25,27,31,32,],[-6,-1,-3,-4,-2,-5,-7,32,-11,]),'NUMBER':([9,10,12,20,22,23,28,],[14,17,19,24,26,27,29,]),'IRE':([0,11,30,],[5,5,5,]),'QUIA':([0,11,30,],[3,3,3,]),'.':([1,3,5,14,15,16,17,19,24,26,],[9,10,12,-8,21,-9,22,23,-10,28,]),'<':([2,4,6,7,25,27,29,32,],[-6,11,-3,-4,-5,-7,30,-11,]),'$end':([2,4,6,7,8,18,25,27,32,],[-6,-1,-3,-4,0,-2,-5,-7,-11,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'VALUE':([7,],[12,]),'GRADUS_':([7,],[13,]),'statement':([0,9,24,],[3,3,3,]),'expression':([0,9,24,],[4,4,4,]),'structure':([0,9,24,],[5,5,5,]),'programme':([0,9,24,],[6,15,25,]),}
+_lr_goto_items = {'VALUE':([9,],[15,]),'GRADUS_':([9,],[16,]),'statement':([0,11,30,],[4,4,4,]),'expression':([0,11,30,],[6,6,6,]),'deplacement':([0,11,30,],[2,2,2,]),'structure':([0,11,30,],[7,7,7,]),'programme':([0,11,30,],[8,18,31,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -31,8 +31,10 @@ _lr_productions = [
   ('statement -> expression','statement',1,'p_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',15),
   ('statement -> structure','statement',1,'p_statement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',16),
   ('expression -> MOTIF . VALUE . COLOR','expression',5,'p_expression_motif','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',20),
-  ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',24),
-  ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',25),
-  ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',29),
-  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',33),
+  ('expression -> deplacement','expression',1,'p_expression_motif','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',21),
+  ('deplacement -> IRE . NUMBER . NUMBER','deplacement',5,'p_deplacement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',28),
+  ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',32),
+  ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',33),
+  ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',37),
+  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',41),
 ]
