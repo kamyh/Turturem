@@ -17,7 +17,21 @@ def p_statement(p):
 
 def p_expression_motif(p):
     ''' expression : MOTIF '.' NUMBER '.' COLOR '''
-    p[0] = AST.OpNode(p[2],[p[1],p[3]])
+    p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3])])
+
+"""
+def p_expression_num(p):
+    '''expression : NUMBER
+        | MOTIF
+        | COLOR'''
+    p[0] = AST.TokenNode(p[1])
+
+def p_expression_motif(p):
+    ''' expression : MOTIF '.' NUMBER'''
+    p[0] = AST.OpNode(p[2],p[1])
+
+"""
+
 """
 def p_statement_print(p):
     ''' statement : PRINT expression '''

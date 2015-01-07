@@ -52,7 +52,7 @@ def t_NUMBER(t):
 def t_EXPRESSION(t):
     r'[A-Za-z_]\w*'
     if t.value in color:
-        t.type = "COLOR"#t.value.upper()
+        t.type = "COLOR"
     elif t.value in motif:
         t.type = "MOTIF"
     else:
