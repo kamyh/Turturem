@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\x17\xf6\xfce\xc4e\xaa\xfa\xc4\xdf\x81\xee"\xcdf:'
+_lr_signature = 'B\t\x83,]\xf8u\x95\xf9Z+5\xf4\xe4Q\x03'
     
-_lr_action_items = {'GRADUS':([7,],[10,]),'MOTIF':([0,9,24,],[1,1,1,]),'COLOR':([17,],[20,]),'FINIS':([26,],[27,]),'NUMBER':([7,8,16,18,22,],[11,14,19,21,23,]),'.':([1,2,11,12,13,14,19,21,],[7,8,-6,17,-7,18,-8,22,]),'QUIA':([0,9,24,],[2,2,2,]),':':([10,],[16,]),'<':([3,4,5,15,20,23,25,27,],[9,-3,-4,-2,-5,24,26,-9,]),'$end':([3,4,5,6,15,20,27,],[-1,-3,-4,0,-2,-5,-9,]),}
+_lr_action_items = {'GRADUS':([7,],[10,]),'MOTIF':([0,9,24,],[1,1,1,]),'COLOR':([17,],[20,]),'FINIS':([3,4,5,15,20,25,26,],[-1,-3,-4,-2,-5,26,-9,]),'NUMBER':([7,8,16,18,22,],[11,14,19,21,23,]),'.':([1,2,11,12,13,14,19,21,],[7,8,-6,17,-7,18,-8,22,]),'QUIA':([0,9,24,],[2,2,2,]),':':([10,],[16,]),'<':([3,4,5,20,23,26,],[9,-3,-4,-5,24,-9,]),'$end':([3,4,5,6,15,20,26,],[-1,-3,-4,0,-2,-5,-9,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -34,5 +34,5 @@ _lr_productions = [
   ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',24),
   ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',25),
   ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',29),
-  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme < FINIS','structure',11,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',33),
+  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',33),
 ]

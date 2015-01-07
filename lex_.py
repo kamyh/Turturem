@@ -35,7 +35,7 @@ tokens = (
 literals = ':.<'
 
 def t_NUMBER(t):
-	r'\d+(\.\d+)?'
+	r'\d+(\,\d+)?'
 	try:
 		t.value = float(t.value)
 	except ValueError:
