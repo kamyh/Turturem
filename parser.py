@@ -27,6 +27,10 @@ def p_expression(p):
     else:
         p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3]),AST.TokenNode(p[5])])
 
+def p_expression_initium(p):
+    ''' expression : INITIUM '''
+    p[0] = AST.TokenNode(p[1])
+
 def p_deplacement(p):
     '''deplacement : IRE '.' NUMBER '.' NUMBER'''
     p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3]),AST.TokenNode(p[5])])
@@ -42,7 +46,7 @@ def p_gradus(p):
 
 def p_structure(p):
     ''' structure : QUIA '.' NUMBER '.' NUMBER '.' NUMBER '<' programme FINIS '''
-    p[0] = AST.WhileNode([AST.TokenNode(p[3]),AST.TokenNode(p[5]),AST.TokenNode(p[7]),p[9]])
+    p[0] = AST.ForNode([AST.TokenNode(p[3]),AST.TokenNode(p[5]),AST.TokenNode(p[7]),p[9]])
    # p[0] = AST.TokenNode(p[1])#AST.forNode([p[2],p[4]])
 
 def p_error(p):

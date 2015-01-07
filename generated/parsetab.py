@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '\x93\xce\xb0\xd1\xa3\xf6\x13\xb3\xd85\xddY.\xda\xdd\xf1'
+_lr_signature = '\x00q\xaa\x17\xca\x86\xa4a\\\xe4\r\xba\xf3\x13\xc2k'
     
-_lr_action_items = {'GRADUS':([10,],[15,]),'MOTIF':([0,13,33,],[1,1,1,]),'CIRCUMACTIO':([0,13,33,],[2,2,2,]),'<':([3,5,7,8,19,28,30,32,35,],[-7,13,-3,-4,-6,-5,-8,33,-12,]),'FINIS':([3,5,7,8,19,21,28,30,34,35,],[-7,-1,-3,-4,-6,-2,-5,-8,35,-12,]),'NUMBER':([10,11,12,14,23,25,26,31,],[16,19,20,22,27,29,30,32,]),'.':([1,2,4,6,16,17,18,20,22,27,29,],[10,11,12,14,-9,24,-10,25,26,-11,31,]),'COLOR':([24,],[28,]),'QUIA':([0,13,33,],[4,4,4,]),':':([15,],[23,]),'IRE':([0,13,33,],[6,6,6,]),'$end':([3,5,7,8,9,19,21,28,30,35,],[-7,-1,-3,-4,0,-6,-2,-5,-8,-12,]),}
+_lr_action_items = {'GRADUS':([11,],[16,]),'MOTIF':([0,14,34,],[1,1,1,]),'CIRCUMACTIO':([0,14,34,],[3,3,3,]),'<':([2,4,6,8,9,20,29,31,33,36,],[-8,-7,14,-3,-4,-6,-5,-9,34,-13,]),'FINIS':([2,4,6,8,9,20,22,29,31,35,36,],[-8,-7,-1,-3,-4,-6,-2,-5,-9,36,-13,]),'NUMBER':([11,12,13,15,24,26,27,32,],[17,20,21,23,28,30,31,33,]),'.':([1,3,5,7,17,18,19,21,23,28,30,],[11,12,13,15,-10,25,-11,26,27,-12,32,]),'COLOR':([25,],[29,]),'QUIA':([0,14,34,],[5,5,5,]),'INITIUM':([0,14,34,],[2,2,2,]),':':([16,],[24,]),'IRE':([0,14,34,],[7,7,7,]),'$end':([2,4,6,8,9,10,20,22,29,31,36,],[-8,-7,-1,-3,-4,0,-6,-2,-5,-9,-13,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'VALUE':([10,],[17,]),'GRADUS_':([10,],[18,]),'statement':([0,13,33,],[5,5,5,]),'expression':([0,13,33,],[7,7,7,]),'deplacement':([0,13,33,],[3,3,3,]),'structure':([0,13,33,],[8,8,8,]),'programme':([0,13,33,],[9,21,34,]),}
+_lr_goto_items = {'VALUE':([11,],[18,]),'GRADUS_':([11,],[19,]),'statement':([0,14,34,],[6,6,6,]),'expression':([0,14,34,],[8,8,8,]),'deplacement':([0,14,34,],[4,4,4,]),'structure':([0,14,34,],[9,9,9,]),'programme':([0,14,34,],[10,22,35,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -33,9 +33,10 @@ _lr_productions = [
   ('expression -> MOTIF . VALUE . COLOR','expression',5,'p_expression','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',20),
   ('expression -> CIRCUMACTIO . NUMBER','expression',3,'p_expression','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',21),
   ('expression -> deplacement','expression',1,'p_expression','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',22),
-  ('deplacement -> IRE . NUMBER . NUMBER','deplacement',5,'p_deplacement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',31),
-  ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',35),
-  ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',36),
-  ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',40),
-  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',44),
+  ('expression -> INITIUM','expression',1,'p_expression_initium','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',31),
+  ('deplacement -> IRE . NUMBER . NUMBER','deplacement',5,'p_deplacement','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',35),
+  ('VALUE -> NUMBER','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',39),
+  ('VALUE -> GRADUS_','VALUE',1,'p_value','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',40),
+  ('GRADUS_ -> GRADUS : NUMBER','GRADUS_',3,'p_gradus','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',44),
+  ('structure -> QUIA . NUMBER . NUMBER . NUMBER < programme FINIS','structure',10,'p_structure','C:/Users/Kevin/PycharmProjects/Turturem/parser.py',48),
 ]
