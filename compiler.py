@@ -1,8 +1,13 @@
 import AST
 from AST import addToClass
 
+#have to do that way because os 120 character len limitation
+tForwardSize = 't.forward(size)'
+
 shapes = {
-    'triangulum': 't.forward(size)\nt.left(120)\nt.forward(size)\nt.left(120)\nt.forward(size)'
+    'triangulum': 't.forward(size)\nt.left(120)\nt.forward(size)\nt.left(120)\nt.forward(size)',
+    'quadratum': tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(size)',
+    'circulus': 't.circle(size)'
 }
 
 colors = {
