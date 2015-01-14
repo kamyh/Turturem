@@ -4,6 +4,8 @@ from AST import addToClass
 #have to do that way because os 120 character len limitation
 tForwardSize = 't.forward(size)'
 
+
+
 shapes = {
     'triangulum': 't.forward(size)\nt.left(120)\nt.forward(size)\nt.left(120)\nt.forward(size)',
     'quadratum': tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(size)',
@@ -17,6 +19,7 @@ colors = {
     'nigrum': 'BLACK'
 }
 
+global_gradus = []
 
 def whilecounter():
     whilecounter.current += 1
@@ -26,10 +29,10 @@ whilecounter.current = 0
 
 @addToClass(AST.ProgramNode)
 def compile(self):
-    bytecode = "import turtle\nt=turtle.Turtle()\nt.speed(1)\nt.shape('turtle')\n"
+    bytecode = ""
     for c in self.children:
         bytecode += c.compile()
-    bytecode += "wn = turtle.Screen()\nwn.exitonclick()"
+    bytecode += ""
     return bytecode
 
 
@@ -37,13 +40,17 @@ def compile(self):
 def compile(self):
     bytecode = ""
     if isinstance(self.tok, str):
+        print(self.tok)
         if self.tok in shapes:
             bytecode += "%s\n" % shapes[self.tok]
         else:
             if self.tok in colors:
                 bytecode += "t.pencolor(\"%s\")\n" % colors[self.tok]
             else:
-                bytecode += "%s\n" % self.tok
+                if 'gradus' in self.tok:
+                    bytecode += "size=%s\n" % self.tok
+                else:
+                    bytecode += "%s\n" % self.tok
     else:
         bytecode += "size=%s\n" % self.tok
     return bytecode
@@ -64,7 +71,9 @@ def compile(self):
 @addToClass(AST.ForNode)
 def compile(self):
     bytecode = ""
-    bytecode += "%s\n" % self.tok
+    print(self.type)
+    global_gradus.append(self)
+    bytecode += "%s\n" % self.rest.compile()
     return bytecode
 
 
@@ -75,7 +84,9 @@ if __name__ == "__main__":
     import os
     prog = open(sys.argv[1]).read()
     ast = parse(prog)
-    compiled = ast.compile()
+    compiled = "import turtle\nt=turtle.Turtle()\nt.speed(1)\nt.shape('turtle')\n"
+    compiled += ast.compile()
+    compiled += "wn = turtle.Screen()\nwn.exitonclick()"
     name = os.path.splitext(sys.argv[1])[0]+'.py'
     outfile = open(name, 'w')
     outfile.write(compiled)

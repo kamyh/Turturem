@@ -1,15 +1,3 @@
-# coding: latin-1
-
-''' Petit module utilitaire pour la construction, la manipulation et la 
-représentation d'arbres syntaxiques abstraits.
-
-Sûrement plein de bugs et autres surprises. À prendre comme un 
-"work in progress"...
-Notamment, l'utilisation de pydot pour représenter un arbre syntaxique cousu
-est une utilisation un peu "limite" de graphviz. Ça marche, mais le layout n'est
-pas toujours optimal...
-'''
-
 import pydot
 
 class Node:
@@ -78,12 +66,7 @@ class Node:
                 edge = pydot.Edge(self.ID,c.ID)
                 edge.set_color(color)
                 edge.set_arrowsize('.5')
-                # Les arrêtes correspondant aux coutures ne sont pas prises en compte
-                # pour le layout du graphe. Ceci permet de garder l'arbre dans sa représentation
-                # "standard", mais peut provoquer des surprises pour le trajet parfois un peu
-                # tarabiscoté des coutures...
-                # En commantant cette ligne, le layout sera bien meilleur, mais l'arbre nettement
-                # moins reconnaissable.
+
                 edge.set_constraint('false') 
                 if label:
                     edge.set_taillabel(str(i))
@@ -126,24 +109,20 @@ class WhileNode(Node):
 
 class ForNode(Node):
     type = 'quia'
-    
+    def __init__(self, tok):
+        Node.__init__(self)
+        self.start = tok[2]
+        self.step = tok[1]
+        self.end = tok[0]
+        self.rest = tok[3]
+
 class EntryNode(Node):
     type = 'ENTRY'
     def __init__(self):
         Node.__init__(self, None)
     
 def addToClass(cls):
-    ''' Décorateur permettant d'ajouter la fonction décorée en tant que méthode
-    à une classe.
-    
-    Permet d'implémenter une forme élémentaire de programmation orientée
-    aspects en regroupant les méthodes de différentes classes implémentant
-    une même fonctionnalité en un seul endroit.
-    
-    Attention, après utilisation de ce décorateur, la fonction décorée reste dans
-    le namespace courant. Si cela dérange, on peut utiliser del pour la détruire.
-    Je ne sais pas s'il existe un moyen d'éviter ce phénomène.
-    '''
+
     def decorator(func):
         setattr(cls,func.__name__,func)
         return func

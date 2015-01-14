@@ -37,7 +37,7 @@ literals = ':.<'
 def t_NUMBER(t):
 	r'\d+(\,\d+)?'
 	try:
-		t.value = float(t.value)
+		t.value = int(t.value)
 	except ValueError:
 		print ("Line %d: Problem while parsing %s!" % (t.lineno,t.value))
 		t.value = 0
