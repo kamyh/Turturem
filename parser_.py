@@ -25,7 +25,7 @@ def p_expression(p):
     elif(len(p)==4):
         p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3])])
     else:
-        p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[1]),AST.TokenNode(p[3]),AST.TokenNode(p[5])])
+        p[0] = AST.OpNode(AST.TokenNode(p[2]),[AST.TokenNode(p[5]),AST.TokenNode(p[3]),AST.TokenNode(p[1])])
 
 def p_expression_initium(p):
     ''' expression : INITIUM '''
@@ -56,11 +56,15 @@ def p_error(p):
     else:
         print ("Syntax error: unexpected end of file!")
 
+
+def parse(program):
+    return yacc.parse(program)
+
 yacc.yacc(outputdir='generated')
 
 if __name__ == "__main__":
     import sys 
-    	
+
     prog = open(sys.argv[1]).read()
     result = yacc.parse(prog)
 

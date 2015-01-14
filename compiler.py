@@ -1,0 +1,78 @@
+import AST
+from AST import addToClass
+
+shapes = {
+    'triangulum': 't.forward(size)\nt.left(120)\nt.forward(size)\nt.left(120)\nt.forward(size)'
+}
+
+colors = {
+    'caeruleum': 'BLUE',
+    'rufus': 'RED',
+    'viridis': 'GREEN',
+    'nigrum': 'BLACK'
+}
+
+
+def whilecounter():
+    whilecounter.current += 1
+    return whilecounter.current
+whilecounter.current = 0
+
+
+@addToClass(AST.ProgramNode)
+def compile(self):
+    bytecode = "import turtle\nt=turtle.Turtle()\nt.speed(1)\nt.shape('turtle')\n"
+    for c in self.children:
+        bytecode += c.compile()
+    bytecode += "wn = turtle.Screen()\nwn.exitonclick()"
+    return bytecode
+
+
+@addToClass(AST.TokenNode)
+def compile(self):
+    bytecode = ""
+    if isinstance(self.tok, str):
+        if self.tok in shapes:
+            bytecode += "%s\n" % shapes[self.tok]
+        else:
+            if self.tok in colors:
+                bytecode += "t.pencolor(\"%s\")\n" % colors[self.tok]
+            else:
+                bytecode += "%s\n" % self.tok
+    else:
+        bytecode += "size=%s\n" % self.tok
+    return bytecode
+
+
+@addToClass(AST.OpNode)
+def compile(self):
+    bytecode = ""
+    if len(self.children) == 1:
+        bytecode += self.children[0].compile()
+        bytecode += "USUB\n"
+    else:
+        for c in self.children:
+            bytecode += c.compile()
+        #bytecode += self.op + "\n"
+    return bytecode
+
+@addToClass(AST.ForNode)
+def compile(self):
+    bytecode = ""
+    bytecode += "%s\n" % self.tok
+    return bytecode
+
+
+if __name__ == "__main__":
+    #connot call a file "parser.py" !
+    from parser_ import parse
+    import sys
+    import os
+    prog = open(sys.argv[1]).read()
+    ast = parse(prog)
+    compiled = ast.compile()
+    name = os.path.splitext(sys.argv[1])[0]+'.py'
+    outfile = open(name, 'w')
+    outfile.write(compiled)
+    outfile.close()
+    print ("Wrote output to", name)
