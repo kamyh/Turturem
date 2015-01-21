@@ -4,12 +4,18 @@ from AST import addToClass
 #have to do that way because os 120 character len limitation
 tForwardSize = 't.forward(size)'
 
+compteurIncrementation = -1
+espaceTablulation = ""
 
 
 shapes = {
-    'triangulum': 't.forward(size)\nt.left(120)\nt.forward(size)\nt.left(120)\nt.forward(size)',
-    'quadratum': tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(90)\n'+tForwardSize+'\nt.right(size)',
-    'circulus': 't.circle(size)'
+    'triangulum': ['t.forward(size)','t.left(120)','t.forward(size)','t.left(120)','t.forward(size)'],
+    'quadratum': [tForwardSize,'t.right(90)',tForwardSize,'t.right(90)',tForwardSize,'t.right(90)',tForwardSize,'t.right(90)'],
+    'circulus': ['t.circle(size)']
+}
+
+others = {
+    'circumactio': ['t.right(size)']
 }
 
 colors = {
@@ -19,12 +25,6 @@ colors = {
     'nigrum': 'BLACK'
 }
 
-global_gradus = []
-
-def whilecounter():
-    whilecounter.current += 1
-    return whilecounter.current
-whilecounter.current = 0
 
 
 @addToClass(AST.ProgramNode)
@@ -42,17 +42,28 @@ def compile(self):
     if isinstance(self.tok, str):
         print(self.tok)
         if self.tok in shapes:
-            bytecode += "%s\n" % shapes[self.tok]
+            tab = shapes[self.tok]
+            i=0
+            while i<len(tab):
+                bytecode += "%s%s\n" %(espaceTablulation,tab[i])
+                i+=1
         else:
             if self.tok in colors:
                 bytecode += "t.pencolor(\"%s\")\n" % colors[self.tok]
+            elif 'gradus' in self.tok:
+                tampon = self.tok.split(":");
+                bytecode += "%ssize=i%s\n" %(espaceTablulation,tampon[1])
+            elif self.tok in others:
+                tab = others[self.tok]
+                i=0
+                while i<len(tab):
+                    bytecode += "%s%s\n" %(espaceTablulation,tab[i])
+                    i+=1
+
             else:
-                if 'gradus' in self.tok:
-                    bytecode += "size=%s\n" % self.tok
-                else:
-                    bytecode += "%s\n" % self.tok
+                bytecode += "%s%s\n" %(espaceTablulation,self.tok)
     else:
-        bytecode += "size=%s\n" % self.tok
+        bytecode += "%ssize=%s\n" %(espaceTablulation,self.tok)
     return bytecode
 
 
@@ -72,8 +83,27 @@ def compile(self):
 def compile(self):
     bytecode = ""
     print(self.type)
-    global_gradus.append(self)
-    bytecode += "%s\n" % self.rest.compile()
+
+    global compteurIncrementation
+    compteurIncrementation +=1
+
+    bytecode += "%sfor i%s in range(%s,%s,%s) :\n" %(espaceTablulation,compteurIncrementation,self.children[2], self.children[0],self.children[1])
+
+    global espaceTablulation
+
+    espaceTablulation = "";
+    for a in range(0,compteurIncrementation+1):
+        espaceTablulation+="\t";
+
+    bytecode += "%s%s\n" %(espaceTablulation,self.children[3].compile())
+
+    compteurIncrementation -=1
+
+    espaceTablulation = "";
+    for a in range(0,compteurIncrementation+1):
+        espaceTablulation+="\t";
+
+
     return bytecode
 
 

@@ -2,43 +2,27 @@ import turtle
 t=turtle.Turtle()
 t.speed(1)
 t.shape('turtle')
-t.pencolor("BLUE")
-size=50
-t.forward(size)
-t.left(120)
-t.forward(size)
-t.left(120)
-t.forward(size)
-t.pencolor("BLUE")
-size=30
-t.circle(size)
-t.pencolor("BLUE")
-size=40
-t.forward(size)
-t.right(90)
-t.forward(size)
-t.right(90)
-t.forward(size)
-t.right(90)
-t.forward(size)
-t.right(size)
-t.pencolor("BLUE")
-size=80
-t.forward(size)
-t.right(90)
-t.forward(size)
-t.right(90)
-t.forward(size)
-t.right(90)
-t.forward(size)
-t.right(size)
-t.pencolor("GREEN")
-size=50
-t.forward(size)
-t.left(120)
-t.forward(size)
-t.left(120)
-t.forward(size)
+for i0 in range(0
+,2
+,1
+) :
+		for i1 in range(0
+,2
+,1
+) :
+		t.pencolor("BLUE")
+		size=i1
+		t.forward(size)
+		t.right(90)
+		t.forward(size)
+		t.right(90)
+		t.forward(size)
+		t.right(90)
+		t.forward(size)
+		t.right(90)
+		t.right(size)
+		size=90
+
 
 wn = turtle.Screen()
 wn.exitonclick()

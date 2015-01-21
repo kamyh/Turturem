@@ -109,12 +109,12 @@ class WhileNode(Node):
 
 class ForNode(Node):
     type = 'quia'
-    def __init__(self, tok):
+'''    def __init__(self, tok):
         Node.__init__(self)
         self.start = tok[2]
         self.step = tok[1]
         self.end = tok[0]
-        self.rest = tok[3]
+        self.rest = tok[3]'''
 
 class EntryNode(Node):
     type = 'ENTRY'

@@ -1,7 +1,6 @@
-triangulum.50.caeruleum<
-circulus.30.caeruleum<
-quadratum.40.caeruleum<
-quadratum.80.caeruleum<
-quia.10.1.0<
-triangulum.50.viridis
+quia.2.1.0<
+quia.2.1.0<
+quadratum.gradus:1.caeruleum<
+circumactio.90
+finis
 finis
