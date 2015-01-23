@@ -87,7 +87,7 @@ def compile(self):
     global compteurIncrementation
     compteurIncrementation +=1
 
-    bytecode += "%sfor i%s in range(%s,%s,%s) :\n" %(espaceTablulation,compteurIncrementation,self.children[2], self.children[0],self.children[1])
+    bytecode += "%sfor i%s in range(%s,%s,%s) :\n" %(espaceTablulation,compteurIncrementation.trim(),self.children[2].trim(), self.children[0].trim(),self.children[1].trim())
 
     global espaceTablulation
 
